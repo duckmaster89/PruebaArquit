@@ -1,1 +1,20 @@
-
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hola-mundo
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hola.gt.multi.claro.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hola-mundo
+            port:
+              number: 80
